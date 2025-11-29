@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>NeuroStudy AI - Smart Learning Assistant</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🧠</div>
+                    <h1>NeuroStudy AI</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-layout">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <div class="nav-group">
+                    <h3 class="nav-group-title">Study Tools</h3>
+                    <div class="nav-items">
+                        <button class="nav-btn active" data-tab="flashcards">
+                            <span class="nav-icon">📚</span>
+                            <span class="nav-text">Flashcards</span>
+                        </button>
+                        <button class="nav-btn" data-tab="chat">
+                            <span class="nav-icon">🤖</span>
+                            <span class="nav-text">AI Tutor</span>
+                        </button>
+                        <button class="nav-btn" data-tab="quiz">
+                            <span class="nav-icon">🎯</span>
+                            <span class="nav-text">Quiz Master</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="nav-footer">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>AI Ready</span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <!-- Flashcards Tab -->
+                <div id="flashcards" class="tab-content active">
+                    <div class="tab-header">
+                        <h2>Smart Flashcards</h2>
+                        <p>Generate and study with AI-powered flashcards</p>
+                    </div>
+                    
+                    <div class="input-card">
+                        <h3>📝 Create New Deck</h3>
+                        <textarea 
+                            id="flashcardTopic" 
+                            placeholder="What do you want to study? (e.g., Machine Learning, French Revolution, Organic Chemistry)"
+                            rows="3"
+                        ></textarea>
+                        <div class="input-actions">
+                            <button id="generateFlashcards" class="btn btn-primary">
+                                <span class="btn-icon">✨</span>
+                                <span class="btn-text">Generate Flashcards</span>
+                                <span class="btn-loading" style="display: none;">Generating...</span>
+                            </button>
+                            <button id="clearFlashcards" class="btn btn-ghost">Clear</button>
+                        </div>
+                    </div>
+
+                    <div class="study-section">
+                        <div class="study-header">
+                            <div class="study-info">
+                                <span id="flashcardCount" class="count-badge">0 cards</span>
+                                <span id="currentTopic" class="topic-tag"></span>
+                            </div>
+                            <div class="study-controls">
+                                <button id="shuffleFlash" class="btn btn-secondary">
+                                    <span class="btn-icon">🔀</span>
+                                    Shuffle
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Single Flashcard View -->
+                        <div id="singleFlashcardView" class="single-flashcard-view" style="display: none;">
+                            <div class="flashcard-container">
+                                <div class="card-outer large-card">
+                                    <div class="card large">
+                                        <div class="card-face card-front large">
+                                            <div class="card-label">Question</div>
+                                            <div class="card-content" id="currentQuestion"></div>
+                                        </div>
+                                        <div class="card-face card-back large">
+                                            <div class="card-label">Answer</div>
+                                            <div class="card-content" id="currentAnswer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flashcard-nav">
+                                    <button id="prevCard" class="btn btn-ghost" disabled>
+                                        <span class="btn-icon">⬅️</span>
+                                        Previous
+                                    </button>
+                                    <button id="flipCard" class="btn btn-primary">
+                                        <span class="btn-icon">🔄</span>
+                                        Flip Card
+                                    </button>
+                                    <button id="nextCard" class="btn btn-ghost">
+                                        <span class="btn-icon">➡️</span>
+                                        Next
+                                    </button>
+                                </div>
+                                
+                                <div class="progress-section">
+                                    <div class="progress-info">
+                                        <span id="currentCardNumber">0</span> of <span id="totalCards">0</span> cards
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="progressFill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Empty State -->
+                        <div id="flashcardsGrid" class="empty-state">
+                            <div class="empty-icon">📚</div>
+                            <h3>No Flashcards Yet</h3>
+                            <p>Enter a topic above to create your first study deck</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Tutor Tab -->
+                <div id="chat" class="tab-content">
+                    <div class="tab-header">
+                        <h2>AI Study Tutor</h2>
+                        <p>Get instant help with your study questions</p>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <div id="chatMessages" class="chat-messages">
+                            <div class="message message-ai">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-content">
+                                    <div class="message-sender">NeuroTutor</div>
+                                    <div class="message-text">Hello! I'm your AI study assistant. Ask me anything about your subjects, and I'll help you understand the concepts better.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-section">
+                            <div class="context-input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="chatContext" 
+                                    placeholder="Current subject (optional)"
+                                    class="context-input"
+                                >
+                            </div>
+                            <div class="message-input-wrapper">
+                                <textarea 
+                                    id="chatInput" 
+                                    placeholder="Ask your study question..."
+                                    rows="2"
+                                ></textarea>
+                                <button id="sendMessage" class="btn btn-primary send-btn">
+                                    <span class="btn-icon">📤</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Master Tab -->
+                <div id="quiz" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Quiz Master</h2>
+                        <p>Test your knowledge with AI-generated quizzes</p>
+                    </div>
+                    
+                    <div class="input-card">
+                        <h3>🎯 Create New Quiz</h3>
+                        <textarea 
+                            id="quizTopic" 
+                            placeholder="Enter a topic for your quiz (e.g., Python Programming, World War II, Cell Biology)"
+                            rows="3"
+                        ></textarea>
+                        <div class="input-actions">
+                            <button id="generateQuiz" class="btn btn-primary">
+                                <span class="btn-icon">⚡</span>
+                                <span class="btn-text">Generate Quiz</span>
+                                <span class="btn-loading" style="display: none;">Generating...</span>
+                            </button>
+                            <button id="clearQuiz" class="btn btn-ghost">Clear</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-section">
+                        <div class="quiz-header">
+                            <div class="quiz-info">
+                                <span id="quizCount" class="count-badge">0 questions</span>
+                                <span id="quizTopicDisplay" class="topic-tag"></span>
+                            </div>
+                            <button id="resetQuiz" class="btn btn-secondary" style="display: none;">
+                                <span class="btn-icon">🔄</span>
+                                Restart Quiz
+                            </button>
+                        </div>
+                        
+                        <div id="quizContainer" class="quiz-container">
+                            <div class="empty-state">
+                                <div class="empty-icon">🎯</div>
+                                <h3>Ready to Test Yourself?</h3>
+                                <p>Enter a topic above to generate a custom quiz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+   <script src="{{ url_for('static', filename='parser.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+
+    app.run(debug=True, port=5000)
+

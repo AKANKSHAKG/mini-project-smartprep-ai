@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartPrep AI</title>
+  <!-- ✅ Correct CSS link -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+
+<canvas id="stars"></canvas>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="logo">SmartPrepAi</div>
+
+  <nav class="nav-links">
+    <a href="#hero">Explore</a>
+
+    <!-- FEATURES DROPDOWN -->
+    <div class="dropdown">
+      <a href="#features" class="drop-btn">Features</a>
+      <div class="dropdown-menu">
+        <a href="#features">Flashcards</a>
+        <a href="#features">Quizzes</a>
+        <a href="#features">AI Tutor</a>
+      </div>
+    </div>
+
+    <a href="#faq">FAQ’s</a>
+    <a href="#how">Guide</a>
+  </nav>
+
+  <!-- ✅ Dashboard button -->
+  <a class="btn dashboard-btn" href="{{ url_for('dashboard') }}">Dashboard</a>
+</header>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <h1>
+      Learn Faster...<br />
+      <span class="highlight-orange">Like, a Lot</span><br />
+      <span class="highlight-white">Faster</span>
+    </h1>
+    <p>
+      SmartPrep AI helps you generate flashcards, quizzes,
+      and study answers instantly using offline AI models.
+    </p>
+    <div class="hero-buttons">
+      <button class="btn primary">
+        Start Learning Faster – it's free
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="video-card">
+      <!-- ✅ Video path -->
+      <video
+        class="dashboard-video"
+        src="{{ url_for('static', filename='new.mp4') }}"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how-it-works" id="how">
+  <h2>How it works</h2>
+  <div class="steps-grid">
+
+    <div class="step-card-1 step-card">
+      <div class="step-image step-brown">
+        <img src="{{ url_for('static', filename='flashcard.png') }}" alt="flashcard content">
+      </div>
+      <p>
+        <span>Type in the topic :</span><br />
+        Desired flashcard generation.
+      </p>
+    </div>
+
+    <div class="step-card-2 step-card">
+      <div class="step-image step-orange">
+        <img src="{{ url_for('static', filename='quiz.png') }}" alt="Quizzes">
+      </div>
+      <p>
+        <span>AI Generates Instantly:</span><br />
+        Quizzes with accuracy powered by AI.
+      </p>
+    </div>
+
+    <div class="step-card-3 step-card">
+      <div class="step-image step-blue">
+        <img src="{{ url_for('static', filename='tutor.png') }}" alt="AI Tutor">
+      </div>
+      <p>
+        <span>AI Assistance:</span><br />
+        Summaries, explanations, and doubts.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FEATURES STACK ================= -->
+<section class="features-stack" id="features">
+
+  <h2>What you can do with SmartPrepAi</h2>
+  <p class="subtitle">
+    From exam prep to homework help — everything you need.
+  </p>
+
+  <div class="feature-card">
+    <div class="icon green">📘</div>
+    <div>
+      <h3>Exam Preparation & Review</h3>
+      <p>
+        Convert your topics into atractive flashcards.
+      </p>
+    </div>
+  </div>
+
+  <div class="feature-card reverse">
+    <div class="icon purple">📝</div>
+    <div>
+      <h3>Homework Help & Assignments</h3>
+      <p>
+        Simplify complex problems with AI-powered explanations.
+      </p>
+    </div>
+  </div>
+
+  <div class="feature-card">
+    <div class="icon blue">🔍</div>
+    <div>
+      <h3>Test your preparation</h3>
+      <p>
+        With the quiz regenerator test your examprep.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<section class="comparison" id="comparison">
+  <h2>Why SmartPrep AI Outperforms Traditional Study</h2>
+  <p class="subtitle">
+    Study smarter, not longer. SmartPrep AI leverages offline AI to generate flashcards, quizzes, and tutor help instantly — saving time, increasing retention, and personalizing your learning.
+  </p>
+
+  <div class="comparison-grid">
+    
+    <!-- Card 1: Learning Techniques -->
+    <div class="compare-card green">
+      <div class="compare-header">
+        <div class="icon">📘</div>
+        <h3>Active Learning vs Conventional Methods</h3>
+      </div>
+      <div class="compare-section">
+        <h4>Traditional Methods</h4>
+        <ul class="bad">
+          <li>❌ Passive reading or note-taking</li>
+          <li>❌ Memorization without practice</li>
+          <li>❌ Limited feedback and retention</li>
+        </ul>
+        <div class="divider">⬇️</div>
+        <h4>SmartPrep AI</h4>
+        <ul class="good">
+          <li>✅ Flashcards generated instantly from topics</li>
+          <li>✅ Spaced repetition for better memory</li>
+          <li>✅ Real-time insights and guidance</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 2: Speed & Personalization -->
+    <div class="compare-card orange">
+      <div class="compare-header">
+        <div class="icon">⚡</div>
+        <h3>Speed & Personalized Learning</h3>
+      </div>
+      <div class="compare-section">
+        <h4>Traditional Methods</h4>
+        <ul class="bad">
+          <li>❌ Manual creation of quizzes and notes</li>
+          <li>❌ One-size-fits-all approach</li>
+          <li>❌ Slow adaptation to progress</li>
+        </ul>
+        <div class="divider">⬇️</div>
+        <h4>SmartPrep AI</h4>
+        <ul class="good">
+          <li>✅ AI tutor generates quizzes instantly</li>
+          <li>✅ Personalized study plan offline</li>
+          <li>✅ Adaptive content based on your pace</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 3: Convenience & Cost -->
+    <div class="compare-card purple">
+      <div class="compare-header">
+        <div class="icon">💻</div>
+        <h3>Convenience & Cost-Effectiveness</h3>
+      </div>
+      <div class="compare-section">
+        <h4>Traditional Methods</h4>
+        <ul class="bad">
+          <li>❌ Expensive private tutors or subscriptions</li>
+          <li>❌ Multiple apps or study tools needed</li>
+          <li>❌ Dependent on internet access</li>
+        </ul>
+        <div class="divider">⬇️</div>
+        <h4>SmartPrep AI</h4>
+        <ul class="good">
+          <li>✅ Fully offline study assistant using phi3-mini</li>
+          <li>✅ All-in-one flashcards, quizzes, AI tutor</li>
+          <li>✅ Affordable, accessible anytime, anywhere</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <h2>FAQ's</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      What is SmartPrep AI?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      SmartPrep AI is an offline study assistant that helps generate flashcards, quizzes, summaries, and provides AI tutor assistance. It is designed to help students study smarter, not longer.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      How does SmartPrep AI work offline?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      SmartPrep AI runs locally using the phi3-mini AI model. All processing happens offline on your device, so you do not need an internet connection to use its features.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Is SmartPrep free?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      Core features are completely free. Some advanced features or customization options may be available as premium upgrades.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Can I customize my study material?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      Yes! You can add your own notes, topics, and questions to create personalized flashcards and quizzes that fit your study style.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Is my study data safe?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      Absolutely. Since SmartPrep runs offline, all your notes, quizzes, and flashcards remain on your device and are never uploaded to the cloud.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Can SmartPrep AI replace a human tutor?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      SmartPrep AI is a study assistant, not a full replacement for human teachers. It can help explain concepts, quiz you, and generate study materials, but personalized mentoring is still best from a teacher.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      What devices support SmartPrep AI?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      SmartPrep AI works on most modern computers that can run the phi3-mini model offline. For best performance, use devices with at least 4GB RAM and a recent processor.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Can I use SmartPrep for multiple subjects?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      Yes! You can create flashcards, quizzes, and summaries for any subject or topic. SmartPrep AI adapts to your content, whether it’s math, science, languages, or history.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      How does the AI tutor help me study?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      You can ask the AI tutor questions about any topic you’re studying. It provides explanations, examples, and summaries to help you understand concepts faster.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      Can I share my flashcards or quizzes?
+      <span class="faq-toggle">+</span>
+    </button>
+    <div class="faq-answer">
+      Currently, all study materials are stored locally. You can export content manually, but there is no cloud sharing built-in for privacy and offline use.
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .faq {
+    max-width: 1200px; /* stretched for bigger screens */
+    margin: 50px auto;
+    color: #fff;
+    font-family: Inter, Arial, sans-serif;
+  }
+
+  .faq h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 48px; /* bigger heading */
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #333;
+    margin-bottom: 15px;
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 20px 0;
+    font-size: 24px; /* increased question size */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    font-size: 20px; /* bigger answer text */
+    line-height: 1.8;
+    color: #ccc;
+    padding: 0 0;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px; /* adjust depending on content */
+    padding: 15px 0;
+  }
+
+  .faq-toggle {
+    font-weight: bold;
+    font-size: 28px;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+  }
+</style>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    btn.addEventListener('click', () => {
+      // Collapse others
+      faqItems.forEach(i => {
+        if(i !== item) i.classList.remove('active');
+      });
+      // Toggle current
+      item.classList.toggle('active');
+    });
+  });
+</script>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <div class="footer-logo">SmartPrepAi</div>
+    </div>
+
+    <div class="footer-links">
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <a href="#"><img src="{{ url_for('static', filename='instagram.png') }}" alt="Instagram"></a>
+      <a href="#"><img src="{{ url_for('static', filename='twitter.png') }}" alt="Twitter"></a>
+      <a href="#"><img src="{{ url_for('static', filename='linkedin.png') }}" alt="LinkedIn"></a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 SmartPrep AI. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ================= STAR CANVAS ================= -->
+<script>
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+let stars = [];
+const numStars = 100;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class Star {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.speed = Math.random() * 0.5 + 0.2;
+    this.alpha = Math.random();
+  }
+  update() { this.y -= this.speed; if (this.y < 0) this.reset(); }
+  draw() { ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+}
+
+for (let i = 0; i < numStars; i++) stars.push(new Star());
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let star of stars) { star.update(); star.draw(); }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>

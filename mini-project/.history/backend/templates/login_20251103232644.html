@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login • QuizMaster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-left {
+            flex: 1;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-20px, -20px) rotate(360deg); }
+        }
+
+        .app-logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tagline {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        .mock-post {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            width: 280px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+            transform: rotate(-2deg);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            margin-right: 10px;
+        }
+
+        .username {
+            font-weight: 600;
+            color: #262626;
+            font-size: 14px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .likes {
+            font-weight: 600;
+            color: #262626;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .caption {
+            color: #262626;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .hashtag {
+            color: #00376b;
+        }
+
+        .login-right {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 24px;
+            color: #262626;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 8px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fafafa;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-top: 8px;
+        }
+
+        .login-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #8e8e8e;
+            font-size: 13px;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 50%;
+            margin-right: 15px;
+            height: 1px;
+            background: #dbdbdb;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: 15px;
+            right: 0;
+            height: 1px;
+            background: #dbdbdb;
+        }
+
+        .signup-link {
+            text-align: center;
+            font-size: 14px;
+            color: #262626;
+        }
+
+        .signup-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            color: #00376b;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .error-message {
+            color: #ed4956;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-left {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Left Side - Instagram Style Mockup -->
+        <div class="login-left">
+            <div class="app-logo">QuizMaster</div>
+            <div class="tagline">Developers are tired of boring login pages 💤</div>
+            
+            <div class="mock-post">
+                <div class="post-header">
+                    <div class="user-avatar"></div>
+                    <div class="username">elifandcode</div>
+                </div>
+                
+                <div class="post-image">
+                    #CodeLife 💻
+                </div>
+                
+                <div class="post-actions">
+                    <div class="action-icons">
+                        <div class="icon">❤️</div>
+                        <div class="icon">💬</div>
+                        <div class="icon">↗️</div>
+                    </div>
+                </div>
+                
+                <div class="likes">18 likes</div>
+                <div class="caption">
+                    <strong>elifandcode</strong> ↗ LAVISION • MALVADO DI<br>
+                    <span class="hashtag">Comment 'code' and I'll send you the code link!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="login-right">
+            <form class="login-form" id="loginForm">
+                <h2 class="form-title">Sign in</h2>
+                
+                <div class="input-group">
+                    <label class="input-label">Username</label>
+                    <input type="text" class="input-field" placeholder="elifandcode" value="elifandcode" required>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Password</label>
+                    <input type="password" class="input-field" placeholder="••••••••••••" value="myfcknopsword123" required>
+                </div>
+
+                <button type="submit" class="login-btn">Sign in</button>
+
+                <div class="error-message" id="errorMessage">
+                    Invalid credentials. Please try again.
+                </div>
+
+                <div class="divider">OR</div>
+
+                <div class="signup-link">
+                    Don't have an account? <a href="#">Sign up</a>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = this.querySelector('input[type="text"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Hide error message initially
+            errorMessage.style.display = 'none';
+
+            // Simple validation
+            if (username && password) {
+                // Simulate API call
+                console.log('Logging in with:', { username, password });
+                
+                // Simulate success
+                setTimeout(() => {
+                    alert('Login successful! Redirecting to quiz...');
+                    window.location.href = 'index.html'; // Redirect to your quiz page
+                }, 1000);
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Add some interactive effects
+        const inputs = document.querySelectorAll('.input-field');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#667eea';
+                this.style.background = 'white';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.borderColor = '#dbdbdb';
+                if (!this.value) {
+                    this.style.background = '#fafafa';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -68,6 +68,12 @@
                             placeholder="What do you want to study? (e.g., Machine Learning, French Revolution, Organic Chemistry)"
                             rows="3"
                         ></textarea>
+                        <select id="flashcardCountInput" class="count-select">
+    <option value="3">3 Flashcards</option>
+    <option value="5" selected>5 Flashcards</option>
+    
+</select>
+
                         <div class="input-actions">
                             <button id="generateFlashcards" class="btn btn-primary">
                                 <span class="btn-icon">✨</span>
@@ -194,6 +200,11 @@
             placeholder="Enter a topic for your quiz (e.g., Python Programming, World War II, Cell Biology)"
             rows="3"
         ></textarea>
+        <select id="quizCountInput" class="count-select">
+    <option value="3" selected>3 Questions</option>
+    <option value="5">5 Questions</option>
+</select>
+
         <div class="input-actions">
             <button id="generateQuiz" class="btn btn-primary">
                 <span class="btn-icon">⚡</span>

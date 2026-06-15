@@ -1285,3 +1285,30 @@ section {
   position: relative;  /* ensures z-index works */
   z-index: 1;          /* above canvas */
 }
+/* ===== FORCE FIX: THEME TOGGLE WHITE BOX ===== */
+
+/* Only target the theme toggle button */
+#themeToggle,
+.theme-toggle,
+.theme-switch,
+button[aria-label="Toggle theme"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove focus ring / outline for theme toggle only */
+#themeToggle:focus,
+.theme-toggle:focus,
+.theme-switch:focus,
+button[aria-label="Toggle theme"]:focus {
+  outline: none !important;
+}
+
+/* Ensure icon inside theme toggle stays visible */
+#themeToggle *,
+.theme-toggle *,
+.theme-switch * {
+  background: transparent !important;
+  color: inherit !important;
+}

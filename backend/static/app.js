@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function generateFlashcards() {
         const topicInput = document.getElementById('flashcardTopic');
         const topic = topicInput.value.trim();
+        const count = document.getElementById('flashcardCountInput').value;
         const generateBtn = document.getElementById('generateFlashcards');
         const loadingText = generateBtn.querySelector('.btn-loading');
         const normalText = generateBtn.querySelector('.btn-text');
@@ -117,7 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ topic: topic })
+                body: JSON.stringify({
+    topic: topic,
+    count: count
+})
+
             });
             
             const data = await response.json();
@@ -227,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function generateQuiz() {
         const topicInput = document.getElementById('quizTopic');
         const topic = topicInput.value.trim();
+        const count = document.getElementById('quizCountInput').value;
         const generateBtn = document.getElementById('generateQuiz');
         const loadingText = generateBtn.querySelector('.btn-loading');
         const normalText = generateBtn.querySelector('.btn-text');
@@ -247,7 +253,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ topic: topic })
+               body: JSON.stringify({
+    topic: topic,
+    count: count
+})
+
             });
             
             const data = await response.json();
@@ -481,7 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
         messageDiv.innerHTML = `
             <div class="message-avatar">${sender === 'ai' ? '🤖' : '👤'}</div>
             <div class="message-content">
-                <div class="message-sender">${sender === 'ai' ? 'NeuroTutor' : 'You'}</div>
+                <div class="message-sender">${sender === 'ai' ? 'SmartTutor' : 'You'}</div>
                 <div class="message-text">${formatChatText(text)}</div>
             </div>
         `;

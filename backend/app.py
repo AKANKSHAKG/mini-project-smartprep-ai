@@ -305,4 +305,4 @@ if __name__ == '__main__':
     print(f"🔗 Using Ollama at: {OLLAMA_HOST}")
     warm_up_model()
     print("🌐 Server starting at: http://127.0.0.1:5000")  # ADD THIS LINE
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)
